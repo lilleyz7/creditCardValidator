@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Validator</title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <label for="validator"> Card Validator</label>
+            <input type="text" name="cardNumber" placeholder="please enter the full card number" minlength="12" maxlength="16"/>
+            <button type="submit">Submit</button>
+        </form>
+        {% if submit and is_valid%}
+            <p>The card number: {{ number }}: is valid and is from {{ ctype }}</p>
+        {% elif submit and not is_valid%}
+            <p>The card number: {{ number }}: is invalid</p>
+        {% endif %}
+    </div>
+</body>
+</html>
