@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Validator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div>
+    <div class="grid h-screen place-items-center">
         <form method="post">
-            <label for="validator"> Card Validator</label>
-            <input type="text" name="cardNumber" placeholder="please enter the full card number" minlength="12" maxlength="16"/>
-            <button type="submit">Submit</button>
+            <div >
+                <label for="validator" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Card Validator</label>
+                <input name="cardNumber" type="text" minlength="12" maxlength="16" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <button type="submit">Submit</button>
+            </div>
         </form>
+        <div id="response-container">
         {% if submit and is_valid%}
-            <p>The card number: {{ number }}: is valid and is from {{ ctype }}</p>
+        <p class="mt-2 text-sm text-green-600 dark:text-green-500">The card number: {{ number }}: is valid and is from {{ ctype }}</p>
         {% elif submit and not is_valid%}
-            <p>The card number: {{ number }}: is invalid</p>
+        <p class="mt-2 text-sm text-green-600 dark:text-green-500">The card number: {{ number }}: is invalid</p>
         {% endif %}
+        </div>
     </div>
 </body>
 </html>

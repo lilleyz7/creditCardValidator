@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, jsonify, request, render_template
 from validator import validate_card
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -25,3 +25,16 @@ def base_route():
             return render_template('home.html', submit=True, number=number, is_valid=True, ctype=card_type)
         else:
             return render_template('home.html', submit=True, number=number, is_valid=False)
+
+@app.route('/api/<card_number>', methods=['POST'])
+def api_route(card_number):
+    if card_number is None:
+        error = {
+            'error': 'card_number is required'
+        }
+        return jsonify(error)
+    
+    else:
+        return jsonify("Content-Type not supported!")
+if __name__ == '__main__':
+    app.run()
